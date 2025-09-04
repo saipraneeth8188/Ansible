@@ -1,0 +1,21 @@
+title: "Ansible Basics"
+summary: |
+  Agentless configuration management and orchestration.
+  Declarative intent + idempotent modules = safe re-runs.
+  Connects to Linux via SSH and to Windows via WinRM.
+
+topics:
+  - heading: "Why Ansible vs shell scripts"
+    bullets:
+      - "Describe desired state; modules figure out OS-specific commands."
+      - "Idempotence avoids repeated changes and drift."
+      - "Inventory targets groups of hosts (web/app/db)."
+  - heading: "Resource Abstraction Layer (modules)"
+    details: "package/service/file/user/template, etc. abstract OS differences."
+  - heading: "Idempotency"
+    details: "Modules check current state and only change when needed."
+  - heading: "Execution"
+    bullets:
+      - "Ad-hoc for one-offs"
+      - "Playbooks for repeatable automation"
+      - "Roles for reuse"

@@ -1,0 +1,11 @@
+title: "Ad-hoc, Facts & Troubleshooting"
+ad_hoc:
+  - "ansible all -m ping -o"
+  - "ansible web -b -m package -a 'name=tree state=present'"
+facts:
+  print: |
+    - debug: { var: ansible_facts['os_family'] }
+troubleshooting:
+  - "-vvv for verbose SSH/WinRM details"
+  - "Check become/sudo; confirm Python on targets"
+  - "Validate inventory and connectivity"

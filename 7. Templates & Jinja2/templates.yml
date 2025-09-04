@@ -1,0 +1,14 @@
+title: "Templates (Jinja2)"
+summary: "Parameterize configuration files."
+
+example: |
+  - name: nginx vhost
+    template:
+      src: vhost.conf.j2
+      dest: /etc/nginx/conf.d/site.conf
+vars_example:
+  j2: |
+    server_name {{ inventory_hostname }};
+tips:
+  - "Keep templates small; use vars"
+  - "Validate syntax before reload"

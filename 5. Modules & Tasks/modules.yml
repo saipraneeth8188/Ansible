@@ -1,0 +1,17 @@
+title: "Modules, Tasks & Control Flow"
+common_modules:
+  package: "Install/remove packages (apt/yum/dnf/zypper)"
+  service: "Start/stop/enable services"
+  file: "Create/delete/permissions"
+  copy: "Copy inline content/files"
+  template: "Render Jinja2 templates"
+  user: "Manage users/groups"
+control_flow:
+  when: "Conditionals"
+  loop: "Iterate over lists/dicts"
+  register: "Capture results"
+  tags: "Run subsets of tasks"
+  changed_failed_when: "Override change/failure"
+best_practice:
+  - "Prefer modules over shell/command"
+  - "Idempotent tasks; notify handlers on change"
