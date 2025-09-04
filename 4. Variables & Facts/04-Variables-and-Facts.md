@@ -1,72 +1,146 @@
 # 04 - Variables and Facts in Ansible
 
-This section summarizes the deep handling of variables and facts from RH Ansible PDF notes.
+## 🔹 Introduction
+
+Variables and facts are key to making playbooks dynamic and reusable. You can define variables in various places, while facts are discovered automatically from managed nodes.
 
 ---
 
-## What are Variables in Ansible?
+## 🔹 Defining Variables
 
-Variables let you customize your playbooks and are used to store values (e.g., IPs, users, paths) for dynamic automation.
-
----
-
-## Ways to Define Variables
-
-| Method | Description |
-|--------|-------------|
-| Inventory | Defined per host/group inside `inventory` |
-| `vars` block | Directly inside the playbook |
-| `vars_files` | External YAML variable files |
-| `host_vars` | Folder containing per-host YAML files |
-| `group_vars` | Folder containing per-group YAML files |
-| `set_fact` | Dynamic variable assignment during play |
-| Extra Vars | `-e key=value` at runtime |
-
----
-
-## Facts in Ansible
-
-Facts are system properties collected from remote nodes using the `setup` module.
-
-**Examples:**
-- `ansible_hostname`
-- `ansible_distribution`
-- `ansible_processor_cores`
-
-Use:
+### 1. In Playbook (inline)
 ```yaml
+- hosts: web
+  vars:
+    pkg: httpd
+  tasks:
+    - name: Install package
+      yum:
+        name: "{{ pkg }}"
+        state: present
+```
+
+### 2. In Inventory
+```ini
+[web]
+web1 ansible_user=ec2-user myport=8080
+
+[web:vars]
+pkg=nginx
+```
+
+### 3. Using `vars_files`
+```yaml
+- hosts: all
+  vars_files:
+    - vars.yml
+```
+
+### 4. Using `vars_prompt`
+```yaml
+- hosts: localhost
+  vars_prompt:
+    - name: user_input
+      prompt: "Enter your value"
+      private: no
+```
+
+---
+
+## 🔹 Facts in Ansible
+
+Facts are data collected about the target system using the `setup` module.
+
+### View all facts:
+```bash
+ansible all -m setup
+```
+
+### Filter facts:
+```bash
+ansible all -m setup -a 'filter=ansible_distribution'
+```
+
+### Disable fact gathering:
+```yaml
+- hosts: all
+  gather_facts: no
+```
+
+---
+
+## 🔹 Registering Variables
+
+You can store output of a task into a variable using `register`.
+
+```yaml
+- name: Get uptime
+  command: uptime
+  register: result
+
 - debug:
-    var: ansible_facts['distribution']
+    var: result.stdout
 ```
 
-Disable fact gathering:
+---
+
+## 🔹 Variable Precedence (High → Low)
+
+1. Extra vars `-e`
+2. Task-level vars
+3. Block vars
+4. Role vars
+5. Play vars
+6. Inventory group vars
+7. Inventory host vars
+8. Facts
+9. Default vars
+
+Use wisely to avoid confusion.
+
+---
+
+## 🔹 Variable Scopes
+
+| Scope        | Defined In                             |
+|--------------|----------------------------------------|
+| Global       | `ansible.cfg`, command line            |
+| Play         | Inside playbooks                       |
+| Host/Group   | Inventory files                        |
+| Role         | roles/role_name/vars/main.yml          |
+
+---
+
+## 🔹 `set_fact`
+
+Used to define runtime variables dynamically:
+
 ```yaml
-gather_facts: no
+- set_fact:
+    final_path: "/opt/{{ filename }}"
 ```
 
----
-
-## Precedence Order (Highest to Lowest)
-
-1. Extra Vars `-e`
-2. Task `set_fact`
-3. Block `vars`
-4. Role defaults
+Useful for condition-based variable setting.
 
 ---
 
-## Good Practices
+## 🔹 Jinja2 Templating
 
-- Separate variables cleanly
-- Use `group_vars/` and `host_vars/` folders for clarity
-- Use `ansible_facts['key']` for facts explicitly
+All variables use `{{ }}` syntax.
 
----
+You can use filters:
 
-## Debugging Variables
-
-Use the `debug` module to print variable values:
 ```yaml
-- debug:
-    var: my_var
+{{ somevar | lower }}
+{{ somevar | upper }}
+{{ somevar | default('value') }}
 ```
+
+---
+
+## Best Practices
+
+✅ Use group_vars and host_vars directories  
+✅ Use `set_fact` for dynamic decisions  
+✅ Use `register` to capture output  
+✅ Avoid naming conflicts and follow variable naming standards  
