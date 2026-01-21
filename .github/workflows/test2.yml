@@ -1,0 +1,13 @@
+name: sai praneeth pipeline
+on: workflow_dispatch
+
+jobs:
+  build-job:
+  name: Build Job
+  runs-on: ubuntu-latestt
+  steps:
+    - name: checkout
+      uses: actions/checkout@v4
+    - name: run tests
+      run: mvn test
+
