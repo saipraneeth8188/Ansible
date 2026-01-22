@@ -10,4 +10,4 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: we will run df command,
-              run: df -h
+              run: du
