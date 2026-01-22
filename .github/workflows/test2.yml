@@ -9,5 +9,5 @@ jobs:
     name: Building Job
     steps:
       - name: running simple command
-        run: echo "hello world"
+        run: echo "hello worldd"
         
