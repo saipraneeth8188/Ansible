@@ -20,7 +20,7 @@ jobs:
         if: always()
         uses: actions/checkout@v4
       - name: run ls command
-        run: ls
+        run: lss
         continue-on-error: true
       - name: run cat command
         run: cat devops.txt
