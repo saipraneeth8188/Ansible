@@ -1,0 +1,19 @@
+name: parallel jobs:
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  builds:
+    runs-on: ubuntu-latest
+    name: Build-Job
+    steps:
+      - name: run df command
+        run: df -h
+
+  tests:
+    name: Test-Job
+    runs-on: ubuntu-latest
+    steps:
+      - name: run ls command
+        run: ls -lrth
