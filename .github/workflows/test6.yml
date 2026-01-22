@@ -1,0 +1,30 @@
+name: pipe tutorial
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  builds:
+    name: Build-Job
+    runs-on: ubuntu-latest
+    steps:
+      - name: code checkout
+        uses: actions/checkout@v4
+      - name: we will run multiple commands
+        run: |
+          set +e
+          chmod +x run.sh uptime.sh push.sh
+
+          ./run.sh
+          RUN_STATUS=$?
+
+          ./uptime.sh
+          UPTIME_STATUS=$?
+          
+          ./push.sh
+          PUSH_STATUS=#$
+          
+          echo "run.sh exit code: $RUN_STATUS"
+          echo "uptime.sh exit code: $UPTIME_STATUS"
+          echo "push.sh exit code: $PUSH_STATUS"
+
