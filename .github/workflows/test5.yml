@@ -1,0 +1,18 @@
+name: pipe tutorial
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  builds:
+    name: Build-Job
+    runs-on: ubuntu-latest
+    steps:
+      - name: we will run multiple commands
+        run: |
+          df -h
+          date
+          ls
+          lss
+          date
+          uptime
