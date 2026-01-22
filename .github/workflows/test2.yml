@@ -2,6 +2,8 @@ name: sai praneeth workflow
 
 on:
   push:
+    paths:
+      - '.github/workflows/test2.yml'
 
 jobs:
   build:
