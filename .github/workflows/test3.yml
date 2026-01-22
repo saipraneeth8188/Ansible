@@ -1,9 +1,7 @@
 name: this is 3rd yaml file
 
 on:  
-  push:
-    paths:
-        - '.github/workflows/test3.yml'
+  workflow_dispatch:
 
 jobs:
     build:
