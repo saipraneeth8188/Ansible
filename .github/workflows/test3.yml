@@ -10,7 +10,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: we will run df command,
-              run: du
+              run: df -h
 
             - name: task to create a file
               run: echo "sai praneeth" > abc.txt
