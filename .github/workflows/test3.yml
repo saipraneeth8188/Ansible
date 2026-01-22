@@ -9,5 +9,5 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
-            - name: we will run date command,
-              run: date
+            - name: we will run df command,
+              run: df -h
