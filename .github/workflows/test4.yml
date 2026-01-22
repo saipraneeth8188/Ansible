@@ -1,0 +1,27 @@
+# here we do POC for the failed steps
+
+name: testing failed builds, first 3 fail, next 3 success, next 1 fail, another 2 passes
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  builds:
+    name: Build-Job
+    runs-on: ubuntu-latest
+    steps:
+      - name: run date command
+        run: daate
+        continue-on-error: true
+      - name: run df command
+        run: df -h
+        continue-on-error: true
+      - name: mandatory step - checkout code
+        if: always()
+        uses: actions/checkout@v4
+      - name: run ls command
+        run: ls
+        continue-on-error: true
+      - name: run cat command
+        run: cat devops.txt
+        continue-on-error: true

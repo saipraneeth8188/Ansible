@@ -16,3 +16,12 @@ jobs:
         uses: actions/checkout@v4
       - name: read content
         run: cat devops.txt
+
+      - name: wrong command
+        run: daate
+
+      - name: always run
+        if: always()
+        run: date
+
+        
