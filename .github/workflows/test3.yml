@@ -11,3 +11,9 @@ jobs:
         steps:
             - name: we will run df command,
               run: du
+
+            - name: task to create a file
+              run: echo "sai praneeth" > abc.txt
+            
+            - name: display content
+              run: cat abc.txt
