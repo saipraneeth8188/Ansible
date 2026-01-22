@@ -1,4 +1,4 @@
-name: parallel jobs:
+name: parallel jobs
 
 on: 
   workflow_dispatch:
