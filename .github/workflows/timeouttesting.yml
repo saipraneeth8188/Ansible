@@ -1,0 +1,31 @@
+name: timeout testing
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  builds:
+    runs-on: ubuntu-latest
+    name: Build-Job
+    steps:
+      - name: run df command
+        run: df -h
+  timeout:
+    name: timeout testing job
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - name: will run commands
+        run: |
+          date
+          sleep 60
+          date
+          sleep 40
+  tests:
+    name: Test-Job
+    runs-on: ubuntu-latest
+    steps:
+      - name: run ls command
+        run: ls -lrth
+
+  
