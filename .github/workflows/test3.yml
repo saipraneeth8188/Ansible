@@ -1,0 +1,10 @@
+name: this is 3rd yaml file
+
+on:  push
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: we will run date command
+              run: date
