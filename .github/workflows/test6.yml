@@ -1,4 +1,4 @@
-name: pipe tutorial
+name: pipe tutorial for scripts
 
 on: 
   workflow_dispatch:
