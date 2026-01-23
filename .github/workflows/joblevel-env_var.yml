@@ -1,0 +1,23 @@
+name: step level environment variable
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build-Job
+    runs-on: ubuntu-latest
+    env:
+        firstname: 'sai praneeth'
+        lastname: 'senigapalli'
+    steps:
+      - name: declare env variable
+        run: echo "full name is $firstname $lastname"
+    
+  test:
+    name: Test-job
+    runs-on: ubuntu-latest
+    needs: build
+    steps: 
+      - name: display variable
+        runs: echo "full name is $firstname $lastname"
