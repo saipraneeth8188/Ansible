@@ -19,6 +19,7 @@ jobs:
   display:
     runs-on: ubuntu-latest
     name: Display Job
+    needs: build
     steps:
       - name: display name
         uses: actions/download-artifact@v4
