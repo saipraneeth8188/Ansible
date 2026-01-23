@@ -3,6 +3,9 @@ name: concurrency control tutorial
 on:
     workflow_dispatch:
 
+concurrency:
+    group: main-branch-group
+    cancel-in-progress: true
 
 jobs:
     build:
