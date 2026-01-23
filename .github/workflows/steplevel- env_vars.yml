@@ -14,3 +14,10 @@ jobs:
           lastname: 'senigapalli'
         run: |
           echo "full name is $firstname $lastname"
+
+      - name: try to display again
+        run: echo "full name is $firstname $lastname"
+        continue-on-error: true
+        
+      - name: run df command
+        run: df -h
