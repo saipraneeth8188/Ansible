@@ -1,0 +1,26 @@
+name: timeout job-step tutorial
+
+on:
+  workflow_dispatch:
+
+jobs:
+    build:
+        name: Build-Job
+        runs-on: ubuntu-latest
+        timeout-minutes: 2
+        steps:
+            - name: sleep in step level
+              run: sleep 122
+
+            - name: print available memory
+              run: free -m
+
+            - name: long sleep
+              run: sleep 130
+
+            - name: display date
+              run: date
+            
+            - name: small sleep
+              run: sleep 20
+
