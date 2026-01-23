@@ -7,7 +7,7 @@ jobs:
     build:
         name: Build-Job
         runs-on: ubuntu-latest
-        timeout-minutes: 5
+        timeout-minutes: 2
         steps:
             - name: print current directory
               run: pwd
@@ -16,12 +16,11 @@ jobs:
               run: free -m
 
             - name: long sleep
-              run: sleep 300
+              run: sleep 130
 
             - name: display date
               run: date
             
             - name: small sleep
-              run: sleep 100
+              run: sleep 20
 
-              
