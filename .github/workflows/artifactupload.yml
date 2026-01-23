@@ -1,0 +1,28 @@
+name: upload artifacts to github and use it
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build Job
+    steps:
+      - name: create a file
+        run: echo "sai praneeth" > devops.txt
+      - name: upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: myfolder
+          path: devops.txt
+
+  display:
+    runs-on: ubuntu-latest
+    name: Display Job
+    steps:
+      - name: display name
+        uses: actions/download-artifact@v4
+        with:
+          name: myfolder
+      - name: read content
+        run: cat devops.txt
