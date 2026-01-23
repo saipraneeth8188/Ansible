@@ -1,4 +1,4 @@
-name: step level environment variable
+name: job level environment variable
 
 on: 
   workflow_dispatch:
