@@ -9,12 +9,12 @@ jobs:
     name: Build Job
     steps:
       - name: create a file
-        run: echo "sai praneeth" > devops.txt
+        run: echo "sai praneeth" > devopss.txt
       - name: upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: myfolder
-          path: devops.txt
+          path: devopss.txt
 
   display:
     runs-on: ubuntu-latest
@@ -25,4 +25,4 @@ jobs:
         with:
           name: myfolder
       - name: read content
-        run: cat devops.txt
+        run: cat devopss.txt
