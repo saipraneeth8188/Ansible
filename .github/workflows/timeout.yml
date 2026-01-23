@@ -1,0 +1,27 @@
+name: timeout tutorial
+
+on:
+  workflow_dispatch:
+
+jobs:
+    build:
+        name: Build-Job
+        runs-on: ubuntu-latest
+        timeout-minutes: 5
+        steps:
+            - name: print current directory
+              run: pwd
+
+            - name: print available memory
+              run: free -m
+
+            - name: long sleep
+              run: sleep 300
+
+            - name: display date
+              run: date
+            
+            - name: small sleep
+              run: sleep 100
+
+              
