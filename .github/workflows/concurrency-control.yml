@@ -3,8 +3,6 @@ name: concurrency control tutorial
 on:
     workflow_dispatch:
 
-concurrency:
-    cancel-in-progress: true
 
 jobs:
     build:
@@ -13,7 +11,7 @@ jobs:
         steps:
             - name: run simple commands
               run: |
-              sleep 300 
-              ls -lrth
+                sleep 300 
+                ls -lrth
 
               
