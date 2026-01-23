@@ -13,11 +13,12 @@ jobs:
     steps:
       - name: declare env variable
         run: echo "full name is $firstname $lastname"
+      - name: run df command
+        run: df -h
+      - name: display first name
+        run: echo "firstname is $firstname"
+      - name: display last name
+        run: echo "last name is $lastname"
     
-  test:
-    name: Test-job
-    runs-on: ubuntu-latest
-    needs: build
-    steps: 
-      - name: display variable
-        runs: echo "full name is $firstname $lastname"
+    
+  
