@@ -1,0 +1,64 @@
+name: in this we will see all the triggers we can do to workflows
+
+on:
+    workflow_dispatch:
+
+    push:
+        branches: [ main,dev ]
+    
+    pull_request:
+
+    push:
+        path:
+            - '.github/workflows/test2.yml'
+    
+    pull_request:
+        branches: [main]
+
+    schedule:
+        cron:
+            - "60 * * * *"
+    
+    pull_request:
+        branches:
+            - main
+            - dev
+
+    release:
+        types: [created]
+
+    issues:
+        types: [opened]
+
+    #runs when tag or branch is created or deleted
+
+    create:
+
+    delete:
+
+    #use case - notify team when branch gets created or delete
+
+    workflow_run:
+        workflows: ["build"]
+        types:
+            - completed
+
+    push:
+        paths:
+            - "src/**"
+        
+    push:
+        paths-ignore:
+            - "docs/**"
+
+    # runs when tag starts with v (v1,v2,v3 etc)        
+    push:
+        tags:
+            - "v**"
+
+    b
+
+        
+
+
+
