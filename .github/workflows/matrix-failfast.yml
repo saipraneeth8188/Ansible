@@ -9,7 +9,7 @@ jobs:
         strategy:
             fail-fast: false
             matrix:
-                os: [ubuntu-latest,ubuntu-oldest,windows-latest]
+                os: [ubuntu-latest,ubuntu-sai-version,windows-latest]
         runs-on:
             ${{ matrix.os}}
         steps:
