@@ -1,0 +1,22 @@
+name: step failure tutorial
+
+on:
+  workflow_dispatch:
+
+jobs:
+    build:
+        name: Build-Job
+        runs-on: ubuntu-latest
+        timeout-minutes: 3
+        steps:
+            - name: run build within 1 minute
+              timeout-minutes: 1
+              run: sleep 70
+
+            - name: run date command
+              run: date
+
+            - name: print available memory
+              run: free -m
+
+            

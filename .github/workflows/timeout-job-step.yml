@@ -9,6 +9,10 @@ jobs:
         runs-on: ubuntu-latest
         timeout-minutes: 2
         steps:
+            - name: run build within 1 minute
+              timeout-minutes: 1
+              run: ./build.sh
+
             - name: sleep in step level
               run: sleep 122
 
@@ -23,4 +27,8 @@ jobs:
             
             - name: small sleep
               run: sleep 20
+
+            - name: run build within 1 minute
+              timeout-minutes: 1
+              run: ./build.sh
 
