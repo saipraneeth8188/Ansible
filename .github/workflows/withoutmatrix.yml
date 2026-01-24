@@ -1,0 +1,20 @@
+name: without matrix strategy
+
+on:
+    workflow_dispatch:
+
+jobs:
+    build2:
+        runs-on: ubuntu-latest
+        name: Build-Job-1
+        steps:
+            - name: running
+              run: echo "Running in ubuntu latest"
+
+    
+    build2:
+        runs-on: ubuntu-22.04
+        name: Build-Job-2
+        steps:
+            - name: running
+              run: echo "Running in ubuntu 22.04"
