@@ -7,8 +7,8 @@ jobs:
     Build:
         name: Build-Job
         strategy:
+            fail-fast: false
             matrix:
-                fail-fast: false
                 os: [ubuntu-latest,ubuntu-oldest,windows-latest]
         runs-on:
             ${{ matrix.os}}
