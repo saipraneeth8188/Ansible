@@ -14,8 +14,10 @@ jobs:
                 include:
                     - os: ubuntu-latest
                       node: 16
-                      message: special message
+                      message: special message - dhurandhar
         runs-on: ${{matrix.os}}
         steps:
             - name: run the job
-              run: echo "we are running in ${{matrix.node}}"    
+              run: | 
+                echo "we are running in ${{matrix.node}}"    
+                echo "message is ${{matrix.message}}"
