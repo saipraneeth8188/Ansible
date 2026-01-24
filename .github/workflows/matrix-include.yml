@@ -1,6 +1,6 @@
 name: matrix strategy with include
 
-os:
+on:
     workflow_dispatch:
 
 
