@@ -1,0 +1,17 @@
+name: matrix fail fast tutorial
+
+on:
+    workflow_dispatch:
+
+jobs:
+    Build:
+        name: Build-Job
+        strategy:
+            matrix:
+                os: [ubuntu-latest,ubuntu-oldest,windows-latest]
+        runs-on:
+            ${{ matrix.os}}
+        fail-fast: false
+        steps:
+            - name: running command
+              run: echo "running in ${{ matrix.os }}"
