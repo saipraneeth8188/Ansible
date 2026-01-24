@@ -1,0 +1,21 @@
+name: matrix strategy with include
+
+os:
+    workflow_dispatch:
+
+
+jobs:
+    Build:
+        name: Build-Job
+        strategy:
+            matrix:
+                os: [ubuntu-latest,windows-latest]
+                node: [16,18]
+                include:
+                   -  os: ubuntu-latest
+                     node: 16
+                     message: special case
+        runs-on: ${{matrix.os}}
+        steps:
+            - name: run the job
+              run: echo "we are running in ${{matrix.node}}"    
