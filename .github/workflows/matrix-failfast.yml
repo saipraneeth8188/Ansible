@@ -8,10 +8,10 @@ jobs:
         name: Build-Job
         strategy:
             matrix:
+                fail-fast: false
                 os: [ubuntu-latest,ubuntu-oldest,windows-latest]
         runs-on:
             ${{ matrix.os}}
-        fail-fast: false
         steps:
             - name: running command
               run: echo "running in ${{ matrix.os }}"
