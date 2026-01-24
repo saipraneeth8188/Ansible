@@ -1,0 +1,23 @@
+name: exclude
+
+on:
+    workflow_dispatch:
+
+
+jobs:
+    Build:
+        name: Build-Job
+        continue-on-error: true
+        strategy:
+            matrix:
+                os: [ubuntu-latest,windows-latest]
+                node: [16,18]
+                exclude:
+                    - os: windows-latest
+                      node: 16
+        runs-on: ${{matrix.os}}
+        steps:
+            - name: run the job
+              run: | 
+                echo "the os is ${{matrix.os}}"
+                echo "the node version is ${{matrix.node}}"   
