@@ -1,0 +1,25 @@
+name: include special case
+
+on:
+    workflow_dispatch:
+
+
+jobs:
+    Build:
+        name: Build-Job
+        continue-on-error: true
+        strategy:
+            matrix:
+                os: [ubuntu-latest,windows-latest]
+                node: [16]
+                include:
+                    - os: ubuntu-latest
+                      node: 18
+                      message: special message - dhurandhar
+        runs-on: ${{matrix.os}}
+        steps:
+            - name: run the job
+              run: | 
+                echo "the os is ${{matrix.os}}"
+                echo "the node version is ${{matrix.node}}"    
+                echo "message is ${{matrix.message}}"
