@@ -7,8 +7,8 @@ jobs:
     Build:
         name: Build-Job
         runs-on: ${{ matrix.os }}
-        matrix:
-            strategy: 
+        strategy:
+            matrix: 
                 os: [ubuntu-latest,windows-latest,ubuntu-24.04]
         steps:
             - name: running
