@@ -1,0 +1,21 @@
+name: continue on error job dependency
+
+on:
+  workflow_dispatch:
+
+jobs:
+  job1:
+    name: First Job
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: fail intentionally
+        run: exit 1
+
+  job2:
+    name: Second Job
+    runs-on: ubuntu-latest
+    needs: job1
+    steps:
+      - name: run after job1
+        run: echo "job2 is running even though job1 failed"
