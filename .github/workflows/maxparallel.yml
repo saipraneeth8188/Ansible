@@ -15,5 +15,7 @@ jobs:
                 node: [16,18]
         steps:
             - name: matrix job
-              run: echo "current we are running ${{matrix.node}}"
+              run: |
+               sleep 20
+               echo "current we are running ${{matrix.node}}"
 
