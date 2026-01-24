@@ -10,7 +10,6 @@ jobs:
         steps:
             - name: running
               run: echo "Running in ubuntu latest"
-
     
     build2:
         runs-on: ubuntu-22.04
