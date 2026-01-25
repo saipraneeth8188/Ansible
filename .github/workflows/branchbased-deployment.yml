@@ -1,0 +1,21 @@
+name: branch based deployment tutorial
+
+on:
+  push:
+
+
+jobs:
+  Build:
+    name: Build-Job
+    runs-on: ubuntu-latest
+    steps:
+      - name: display date
+        run: date 
+  
+  Deploy:
+    name: Deploy Job
+    runs-on: ubuntu-latest
+    if: ${{ github.ref == '/refs/heads/dev'}}
+    steps:
+      - name: deploy step
+        run: df -h
