@@ -3,7 +3,7 @@ name: we will run only if push happens to README.MD
 on:
   push:
     paths:
-      - README.MD
+      - README.md
     branches: [main]
 
 jobs:
