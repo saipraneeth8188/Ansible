@@ -3,7 +3,8 @@ name: github actions permissions tutorial
 on:
     workflow_dispatch:
 
-permissions: {}
+permissions:
+    contents: none
 
 jobs:
     Build:
