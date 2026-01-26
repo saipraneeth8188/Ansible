@@ -1,0 +1,16 @@
+name: PR Preview Pipeline
+
+on:
+  pull_request:
+    branches:
+      - uat
+
+jobs:
+  preview-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Preview deploy for PR
+        run: |
+          echo "PR raised to UAT"
+          echo "Deploying PR code to preview environment"
+          echo "Approver can validate this output"

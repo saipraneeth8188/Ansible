@@ -1,0 +1,16 @@
+name: UAT Deployment Pipeline
+
+on:
+  push:
+    branches:
+      - uat
+
+jobs:
+  uat-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to UAT
+        run: |
+          echo "PR merged"
+          echo "Code pushed to UAT branch"
+          echo "Deploying approved code to UAT environment"

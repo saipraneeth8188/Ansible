@@ -1,0 +1,12 @@
+name: Deploy on PR (example)
+
+on:
+  pull_request:
+    branches: [uat]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to UAT
+        run: echo "Deploying because PR event happened"

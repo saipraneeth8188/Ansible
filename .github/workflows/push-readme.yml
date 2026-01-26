@@ -1,0 +1,13 @@
+name: we will run only if push happens to README.MD
+
+on:
+  push:
+    paths: [README.MD]
+
+jobs:
+  Build:
+    name: Build-Job
+    runs-on: ubuntu-latest
+    steps:
+      - name: run a simple command
+        run: df -h
