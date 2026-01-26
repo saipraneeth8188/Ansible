@@ -1,0 +1,22 @@
+name: push on main branch triggering deploy job
+
+on: 
+  push:
+
+
+jobs:
+    Build:
+        name: Build-Job
+        runs-on: ubuntu-latest
+        steps:
+            - name: build job
+              run: df -h
+
+    deploy:
+        name: Deploy-Job
+        runs-on: ubuntu-latest
+        needs: Build
+        steps:
+            - name: deploy job
+              if: {{ github.refs == '/git/heads/main'}}
+              run: echo "deploy job done"

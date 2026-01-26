@@ -1,0 +1,39 @@
+name: build uat prod flow
+
+on:
+  push:
+  pull_request:
+    branches:
+      - uat
+      - main
+    types:
+      - closed
+
+jobs:
+  Build:
+    name: Build-Job
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    steps:
+      - name: build step
+        run: echo "build running for push on any branch"
+
+  Deploy-UAT:
+    name: Deploy to UAT
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' &&
+        github.event.pull_request.merged == true &&
+        github.event.pull_request.base.ref == 'uat'
+    steps:
+      - name: deploy uat
+        run: echo "deploying to UAT"
+
+  Deploy-PROD:
+    name: Deploy to PROD
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' &&
+        github.event.pull_request.merged == true &&
+        github.event.pull_request.base.ref == 'main'
+    steps:
+      - name: deploy prod
+        run: echo "deploying to PROD"
