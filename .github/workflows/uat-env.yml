@@ -1,0 +1,37 @@
+name: Deploy to UAT using Environment
+
+on:
+  workflow_dispatch:   # manual trigger from UI
+
+jobs:
+  deploy-uat:
+    name: UAT Deployment Job
+    runs-on: ubuntu-latest
+
+    # 👇 THIS is the key line
+    environment: uat
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+          cache: maven
+
+      - name: Build application
+        run: mvn clean package
+
+      - name: Deploy WAR to Tomcat (UAT)
+        env:
+          TOMCAT_URL: ${{ secrets.TOMCAT_URL }}
+          TOMCAT_USER: ${{ secrets.TOMCAT_USERNAME }}
+          TOMCAT_PASS: ${{ secrets.TOMCAT_PASSWORD }}
+        run: |
+          WAR=$(ls target/*.war | head -n 1)
+          curl -sS -u "${TOMCAT_USER}:${TOMCAT_PASS}" \
+            --upload-file "$WAR" \
+            "${TOMCAT_URL}/manager/text/deploy?path=/maven-web-application&update=true"

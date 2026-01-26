@@ -1,0 +1,30 @@
+name: Simple Build and Deploy
+
+on:
+    workflow_dispatch:
+
+jobs:
+    Build:
+        name: Build-Job
+        runs-on: ubuntu-latest
+        steps:
+            - name: code checkout
+              uses: actions/checkout@v4
+            - name: setup java
+              uses: actions/setup-java@v4
+              with:
+                distribution: temurin
+                java-version: 17
+                cache: maven
+            - name: create build
+              run: mvn clean package
+            - name: Deploy WAR to tomcat
+              env:
+                TOMCAT_URL:  ${{ secrets.TOMCAT_URL}}
+                TOMCAT_USER:  ${{ secrets.TOMCAT_USERNAME}}
+                TOMCAT_PASS: ${{ secrets.TOMCAT_PASSWORD}}
+              run: |
+               WAR=$(ls target/*.war | head -n 1)
+               curl -sS -u "${TOMCAT_USER}:${TOMCAT_PASS}" --upload-file "$WAR" "${TOMCAT_URL}/manager/text/deploy?path=/maven-web-application&update=true"
+
+    

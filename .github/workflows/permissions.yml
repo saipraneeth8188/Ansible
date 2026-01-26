@@ -1,0 +1,17 @@
+name: github actions permissions tutorial
+
+on:
+    workflow_dispatch:
+
+permissions: 
+    id-token: write
+
+jobs:
+    Build:
+        name: Build-Job
+        runs-on: ubuntu-latest
+        steps:
+            - name: code checkout
+              uses: actions/checkout@v4
+            - name: run df command
+              run: df -h
