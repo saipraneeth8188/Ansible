@@ -1,0 +1,14 @@
+name: ignore on README.md 
+
+on:
+    push:
+        paths-ignore:
+            - README.md
+
+jobs:
+    Build:
+        name: Build-Job
+        runs-on: ubuntu-latest
+        steps:
+            - name: run df command
+              run: df -h
